@@ -18,6 +18,8 @@ class CreateMateriasPrimasTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->integer('cantidad');
+            $table->integer('valor');
+            $table->integer('estado');
             $table->timestamps();
             
         });

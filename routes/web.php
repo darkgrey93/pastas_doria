@@ -30,4 +30,33 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-Route::get('/home', 'HomeController@index')->name('admin.home');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('admin.home');
+     //Usuarios
+    Route::resource('admin/usuarios', 'UserController', ['as' => 'admin'])->except([
+        'show'
+    ]);
+    Route::get('admin/usuarios/data', array('as' => 'admin.usuarios.data', 'uses' => 'UserController@data'));
+
+    //Materias
+    Route::resource('admin/materias', 'MateriasController', ['as' => 'admin'])->except([
+        'show'
+    ]);
+    Route::get('admin/materias/data', array('as' => 'admin.materias.data', 'uses' => 'MateriasController@data'));
+    //proveedores
+    Route::resource('admin/proveedores', 'ProveedoresController', ['as' => 'admin'])->except([
+        'show'
+    ]);
+    Route::get('admin/proveedores/data', array('as' => 'admin.proveedores.data', 'uses' => 'ProveedoresController@data'));
+    //clientes
+    Route::resource('admin/clientes', 'ClientesController', ['as' => 'admin'])->except([
+        'show'
+    ]);
+    Route::get('admin/clientes/data', array('as' => 'admin.clientes.data', 'uses' => 'ClientesController@data'));
+    //Productos
+    Route::resource('admin/productos', 'ProductosController', ['as' => 'admin'])->except([
+        'show'
+    ]);
+    Route::get('admin/productos/data', array('as' => 'admin.productos.data', 'uses' => 'ProductosController@data'));
+});

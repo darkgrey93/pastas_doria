@@ -15,7 +15,14 @@ class CreatePedidoTable extends Migration
     {
         Schema::create('pedido', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('id_proveedor');
+            $table->unsignedInteger('id_materia_prima');
+            $table->unsignedInteger('estado');            
             $table->timestamps();
+
+            $table->foreign('id_proveedor')->references('id')->on('proveedores')->onDelete('cascade');
+            $table->foreign('id_materia_prima')->references('id')->on('materias_primas')->onDelete('cascade');
+            $table->foreign('estado')->references('id')->on('estado')->onDelete('cascade');
         });
     }
 

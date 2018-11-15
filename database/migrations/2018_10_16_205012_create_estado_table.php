@@ -17,6 +17,8 @@ class CreateEstadoTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->timestamps();
+
+            
         });
     }
 

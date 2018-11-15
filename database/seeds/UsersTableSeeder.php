@@ -15,17 +15,11 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $user1 = User::create([
-            'name' => 'Alejandro',
-            'email' => 'alejo@ucundinamarca.edu.co',
+            'name' => 'admon',
+            'email' => 'admon@pastasdoria.co',
             'password' => bcrypt('123456')
         ]);
         $user1->assignRole('ADMINISTRADOR');
 
-        $user1 = User::create([
-            'name' => 'Liz',
-            'email' => 'liz@ucundinamarca.edu.co',
-            'password' => bcrypt('123456')
-        ]);
-        $user1->assignRole('USUARIO_ESTANDAR');
     }
 }
